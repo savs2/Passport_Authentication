@@ -1,12 +1,12 @@
 const express = require('express');
 const passport = require('passport');
 const router = express.Router();
+const User = require("../models/user")
 
 router.post('/register', async(req,res)=>{
-
+    // res.send('route hit ')
     try{
         const newUser = new User({email:req.body.email , username:req.body.username , name:req.body.name});
-        await sendMail(req.body.email);
         const regUser = await User.register(newUser,req.body.password );
         
         console.log('success',`${req.body.name} has been registered successfully`);
