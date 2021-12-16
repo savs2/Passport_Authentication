@@ -60,17 +60,16 @@ passport.serializeUser(function (user, done) {
   });   
 
 
-
+app.use(authRouter)
 // Database creation and connection
 mongoose.connect(`${database}`)
         .then(() => {
             console.log('Database created and connected successfully!')
         })
-        .then(() => {
-            app.listen(port, () => {
-                console.log(`serve at http://${db_host}:${port}`);
-            });
-        })
         .catch((err) =>  console.log(err))
-
+  
+app.listen(port, () => {
+          console.log(`serve at http://${db_host}:${port}`);
+      });
+  
 
